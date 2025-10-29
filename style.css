@@ -1,0 +1,644 @@
+/* ======== CONFIGURAÇÕES GLOBAIS E VARIÁVEIS ======== */
+:root {
+    /* Paleta Safira Clássico */
+    --color-primary: #0B2C4A;     /* Azul Profundo */
+    --color-secondary: #547A8B;   /* Azul Acinzentado */
+    --color-accent: #DDC9A3;      /* Areia */
+    --color-base: #FFFFFF;        /* Branco */
+    --color-text-dark: #222222;
+    --color-text-light: #555555;
+    --color-background-alt: #f8f9fa;
+
+    /* Tipografia */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+
+    /* Layout */
+    --header-height: 70px;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--color-text-light);
+    background-color: var(--color-base);
+    padding-top: var(--header-height); /* Espaço para o header fixo */
+}
+
+.container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+h1 { font-size: 3rem; margin-bottom: 1rem; }
+h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+h3 { font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--color-secondary); }
+p { margin-bottom: 1rem; }
+a { color: var(--color-secondary); text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: var(--color-primary); }
+
+.section-common {
+    padding: 5rem 0;
+}
+
+.section-bg-alt {
+    background-color: var(--color-background-alt);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+}
+
+/* ======== BOTÕES GLOBAIS ======== */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: var(--color-primary);
+    color: var(--color-base);
+    border: 2px solid var(--color-primary);
+    border-radius: 50px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: var(--color-base);
+}
+.btn-secondary {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: transparent;
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-base);
+}
+.section-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* ======== 0. BANNER DE EVENTO ======== */
+.event-banner {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    padding: 10px 20px;
+    text-align: center;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease;
+}
+.event-banner.hidden {
+    transform: translateY(-100%);
+}
+.event-banner p {
+    margin: 0;
+    font-weight: 500;
+}
+.event-banner a {
+    color: var(--color-primary);
+    font-weight: 700;
+    text-decoration: underline;
+}
+.close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-primary);
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+.close-btn svg { width: 14px; height: 14px; }
+
+/* ======== 1. HEADER E NAVEGAÇÃO ======== */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--color-base);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    z-index: 1000;
+}
+.navbar {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.nav-logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+.nav-link {
+    font-weight: 500;
+    color: var(--color-text-light);
+    padding: 5px 0;
+    position: relative;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+.nav-link.active {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+.nav-link.cta-button {
+    background-color: var(--color-primary);
+    color: var(--color-base);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 500;
+    margin-left: 1rem;
+}
+.nav-link.cta-button:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-base);
+}
+.nav-link.cta-button::after {
+    display: none;
+}
+
+/* ======== 2. SEÇÃO HOME ======== */
+.section-home {
+    padding: 4rem 0 2rem 0;
+    background-color: var(--color-base);
+}
+.home-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "text image"
+        "bio bio"
+        "video video";
+    gap: 3rem;
+    align-items: center;
+}
+.home-text { grid-area: text; }
+.home-image { grid-area: image; text-align: center; }
+.home-bio { grid-area: bio; }
+.home-video-placeholder { grid-area: video; }
+
+.home-text .subtitle {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+.home-image img {
+    max-width: 100%;
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 8px solid var(--color-accent);
+}
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.social-icons a {
+    color: var(--color-secondary);
+    width: 30px;
+    height: 30px;
+}
+.social-icons a:hover {
+    color: var(--color-primary);
+}
+.social-icons svg {
+    width: 100%;
+    height: 100%;
+}
+.home-bio {
+    padding-top: 3rem;
+    border-top: 1px solid #eee;
+    margin-top: 2rem;
+}
+.home-bio h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.home-video-placeholder {
+    width: 100%;
+    height: 400px;
+    background-color: var(--color-background-alt);
+    border: 2px dashed var(--color-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: var(--border-radius);
+    margin-top: 2rem;
+}
+.home-video-placeholder p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--color-secondary);
+}
+/* $ Estilo para o vídeo quando for adicionado */
+.home-video-placeholder iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+/* ======== 3. SEÇÃO EVENTOS CONCLUÍDOS ======== */
+/* $ Layout flexível para adicionar mais eventos */
+.event-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 coluna por padrão */
+    gap: 2rem;
+}
+.event-card {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* Imagem fixa, texto flexível */
+    gap: 2rem;
+    background-color: var(--color-base);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+.event-card:hover {
+    transform: translateY(-5px);
+}
+.event-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.event-card-content {
+    padding: 2rem;
+}
+
+/* ======== 4. SEÇÃO PRÓXIMOS EVENTOS ======== */
+.save-the-date-card {
+    max-width: 700px;
+    margin: 2rem auto 0 auto;
+    background-color: var(--color-base);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(221, 201, 163, 0.3);
+}
+.save-the-date-card .date-box {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-base);
+    background-color: var(--color-primary);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    display: inline-block;
+    margin: 1rem 0 1.5rem 0;
+}
+.save-the-date-card p {
+    font-size: 1.1rem;
+}
+
+/* ======== 5. SEÇÃO DEPOIMENTOS ======== */
+/* $ Grade flexível para adicionar mais depoimentos */
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.testimonial-card {
+    background-color: var(--color-background-alt);
+    border-left: 5px solid var(--color-accent);
+    padding: 2rem;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+.testimonial-card .quote {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-text-dark);
+    margin-bottom: 1.5rem;
+}
+.testimonial-card .author {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* ======== 6. SEÇÃO PUBLICAÇÕES ======== */
+/* $ Grade flexível para adicionar mais publicações */
+.publication-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.publication-card {
+    background-color: var(--color-base);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+.publication-placeholder {
+    width: 100%;
+    height: 200px;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-base);
+    font-weight: 500;
+}
+.publication-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.publication-card h3 {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+}
+.publication-card p {
+    padding: 0 1.5rem;
+}
+.publication-card .btn-secondary {
+    margin: 0 1.5rem 1.5rem 1.5rem;
+}
+
+/* ======== 7. FOOTER E CONTATO ======== */
+.main-footer {
+    background-color: var(--color-primary);
+    color: var(--color-base);
+    padding: 4rem 0 1rem 0;
+    margin-top: 3rem;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+.main-footer h3 {
+    color: var(--color-accent);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+.main-footer p {
+    color: #eee;
+    margin-bottom: 0.5rem;
+}
+.main-footer a {
+    color: #eee;
+}
+.main-footer a:hover {
+    color: var(--color-accent);
+}
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.footer-contact svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--color-accent);
+}
+.footer-dev-credits p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+.footer-copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-secondary);
+}
+.footer-copyright p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* ======== 7. FOOTER E CONTATO (AJUSTES) ======== */
+.main-footer {
+    background-color: var(--color-primary);
+    color: var(--color-base);
+    padding: 4rem 0 0 0; /* Ajustado para remover padding inferior, que vai para o copyright */
+    margin-top: 3rem;
+    margin-bottom: auto;
+}
+
+/* $ NOVO BLOCO DE AGENDAMENTO */
+.agendamento-cta {
+    text-align: center;
+    padding-bottom: 4rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--color-secondary);
+}
+.agendamento-cta .section-title {
+    color: var(--color-base); /* Título branco */
+}
+.agendamento-cta .section-subtitle {
+    color: #eee;
+    margin-bottom: 2.5rem;
+}
+.agendamento-botoes {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap; /* Para quebrar em telas menores */
+}
+.agendamento-botoes a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 14px 30px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+.agendamento-botoes a svg {
+    width: 20px;
+    height: 20px;
+}
+/* Botão WhatsApp (verde) */
+.agendamento-botoes .btn-whatsapp {
+    background-color: #25D366;
+    border: 2px solid #25D366;
+    color: var(--color-base);
+}
+.agendamento-botoes .btn-whatsapp:hover {
+    background-color: #1EAE54;
+    border-color: #1EAE54;
+}
+/* Botão Email (visual 'vazado' no footer) */
+.agendamento-botoes .btn-email {
+    background-color: transparent;
+    border: 2px solid var(--color-base);
+    color: var(--color-base);
+}
+.agendamento-botoes .btn-email:hover {
+    background-color: var(--color-base);
+    color: var(--color-primary);
+}
+/* $ FIM DO NOVO BLOCO */
+
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+.main-footer h3 {
+    color: var(--color-accent);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+/* ======== 7. HOTFIXES DO FOOTER ======== */
+
+/* $ FIX 1: Adiciona o alinhamento de flexbox (ícone + texto) que estava faltando */
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #eee;
+    margin-bottom: 0.5rem; /* Garante espaçamento consistente */
+}
+
+.footer-contact svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--color-accent);
+}
+/* $ FIM DO FIX 1 */
+
+
+/* $ FIX 2: Remove a "linha branca" (margem extra) no fim da página */
+.footer-copyright {
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem; /* Adiciona um padding controlado */
+    border-top: 1px solid var(--color-secondary);
+}
+
+.footer-copyright p {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 0; /* Remove a margem que causava o espaço extra */
+}
+/* $ FIM DO FIX 2 */
+/* ======== 8. RESPONSIVIDADE ======== */
+@media (max-width: 992px) {
+    .home-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "image"
+            "text"
+            "bio"
+            "video";
+        text-align: center;
+    }
+    .home-text {
+        margin-top: 2rem;
+    }
+    .social-icons {
+        justify-content: center;
+    }
+    .event-card {
+        grid-template-columns: 1fr; /* Eventos em coluna única */
+    }
+    .event-card-image img {
+        height: 250px; /* Altura fixa para imagem no mobile */
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2, .section-title { font-size: 2rem; }
+
+    /* Menu Mobile (será ativado via JS, por enquanto só escondido) */
+    .nav-menu {
+        display: none; /* Esconder o menu desktop */
+        /* Aqui entraria a lógica de um menu hamburguer */
+    }
+    /* Simplificação para este projeto: deixar o menu rolar */
+    .navbar {
+        overflow-x: auto;
+        padding: 0 10px;
+    }
+    .nav-menu {
+        display: flex; /* Re-exibe para rolagem horizontal */
+        gap: 1rem;
+    }
+    .nav-link { font-size: 0.9rem; }
+    .nav-link.cta-button { padding: 6px 12px; font-size: 0.9rem; }
+    .nav-logo { font-size: 1.5rem; }
+}
