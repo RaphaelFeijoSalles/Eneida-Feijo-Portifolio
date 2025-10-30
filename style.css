@@ -592,8 +592,93 @@ a:hover { color: var(--color-primary); }
     margin-bottom: 0; /* Remove a margem que causava o espaço extra */
 }
 /* $ FIM DO FIX 2 */
-/* ======== 8. RESPONSIVIDADE ======== */
+
+/* ======== 8. RESPONSIVIDADE (Menu Hambúrguer) ======== */
+
+/* Estilos do Botão Hambúrguer */
+.hamburger {
+    display: none; /* Escondido no desktop */
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+.hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--color-primary);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Usamos 992px como breakpoint para tablets e celulares */
 @media (max-width: 992px) {
+    .navbar {
+        /* O container do navbar agora tem padding */
+        padding: 0 20px;
+        max-width: 100%; /* Ocupa a largura toda */
+    }
+
+    .hamburger {
+        display: block; /* Mostra o botão hambúrguer */
+        z-index: 1002; /* Para ficar acima do menu */
+    }
+
+    .nav-menu {
+        position: fixed; /* Menu fica por cima de tudo */
+        left: -100%;     /* Começa fora da tela, à esquerda */
+        top: var(--header-height); /* Começa abaixo do header */
+        flex-direction: column; /* Itens ficam em coluna */
+        background-color: var(--color-base);
+        width: 100%;
+        height: calc(100vh - var(--header-height)); /* Ocupa a tela toda */
+        text-align: center;
+        transition: left 0.3s ease-in-out;
+        box-shadow: 0 8px 10px rgba(0,0,0,0.1);
+        padding-top: 2rem;
+        gap: 0; /* Remove o gap do desktop */
+        z-index: 1001;
+    }
+
+    /* $ Classe 'active' que será adicionada pelo JS */
+    .nav-menu.active {
+        left: 0; /* Puxa o menu para dentro da tela */
+    }
+
+    .nav-item {
+        margin: 1.5rem 0; /* Espaçamento vertical dos links */
+    }
+    
+    .nav-link {
+        font-size: 1.2rem; /* Letra maior para mobile */
+    }
+
+    .nav-link.cta-button {
+        margin-left: auto; /* Centraliza o botão */
+        margin-right: auto;
+        margin-top: 1rem;
+        width: 80%;
+        max-width: 300px;
+        font-size: 1.2rem;
+        padding: 12px 20px;
+    }
+
+    /* $ Animação do "X" do hambúrguer */
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0; /* Barra do meio some */
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Outros ajustes de responsividade que já existiam */
+    h1 { font-size: 2.5rem; }
+    h2, .section-title { font-size: 2rem; }
+
     .home-grid {
         grid-template-columns: 1fr;
         grid-template-areas: 
@@ -603,42 +688,29 @@ a:hover { color: var(--color-primary); }
             "video";
         text-align: center;
     }
-    .home-text {
-        margin-top: 2rem;
-    }
-    .social-icons {
-        justify-content: center;
-    }
+    .home-text { margin-top: 2rem; }
+    .social-icons { justify-content: center; }
     .event-card {
-        grid-template-columns: 1fr; /* Eventos em coluna única */
+        grid-template-columns: 1fr;
     }
-    .event-card-image img {
-        height: 250px; /* Altura fixa para imagem no mobile */
+    .event-card-image img { height: 250px; }
+
+    /* $ FIX: Corrige a sobreposição do 'X' no banner em telas móveis */
+    .event-banner {
+        /* Adiciona um preenchimento à direita para o texto não ficar embaixo do botão */
+        padding-right: 50px; 
     }
+    .close-btn {
+        /* Ajusta a posição do botão para ele ficar dentro do novo preenchimento */
+        right: 15px; 
+    }
+    
     .footer-grid {
         grid-template-columns: 1fr;
     }
-}
 
-@media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    h2, .section-title { font-size: 2rem; }
-
-    /* Menu Mobile (será ativado via JS, por enquanto só escondido) */
-    .nav-menu {
-        display: none; /* Esconder o menu desktop */
-        /* Aqui entraria a lógica de um menu hamburguer */
-    }
-    /* Simplificação para este projeto: deixar o menu rolar */
-    .navbar {
-        overflow-x: auto;
-        padding: 0 10px;
-    }
-    .nav-menu {
-        display: flex; /* Re-exibe para rolagem horizontal */
+    .agendamento-botoes {
+        flex-direction: column; /* Botões do footer em coluna */
         gap: 1rem;
     }
-    .nav-link { font-size: 0.9rem; }
-    .nav-link.cta-button { padding: 6px 12px; font-size: 0.9rem; }
-    .nav-logo { font-size: 1.5rem; }
 }

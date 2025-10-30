@@ -1,5 +1,29 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    // --- $ NOVO: LÓGICA DO MENU HAMBÚRGUER ---
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+    const navLinks = document.querySelectorAll(".nav-link"); // Pega todos os links
+
+    if (hamburger && navMenu) {
+        // 1. Abrir/Fechar com o clique no hambúrguer
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        // 2. Fechar o menu ao clicar em um link (para ir para a seção)
+        navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                // Só fecha se o menu estiver aberto (em modo mobile)
+                if (navMenu.classList.contains("active")) {
+                    hamburger.classList.remove("active");
+                    navMenu.classList.remove("active");
+                }
+            });
+        });
+    }
+
     // --- 1. LÓGICA DO BANNER DE EVENTO ---
     const banner = document.getElementById("event-banner");
     const closeBannerBtn = document.getElementById("close-banner");
@@ -21,9 +45,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    
     // --- 2. LÓGICA DE NAVEGAÇÃO (SCROLL-SPY) ---
     const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll(".nav-menu .nav-link");
+    navLinks = document.querySelectorAll(".nav-menu .nav-link");
     const header = document.getElementById("main-header");
     const headerHeight = header.offsetHeight;
     // Ajuste para o banner, se ele estiver visível
