@@ -1,6 +1,21 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+    // --- $ NOVO: LÓGICA DO SCROLLER DE DEPOIMENTOS ---
+    const scroller = document.querySelector(".testimonial-scroller-inner");
+    if (scroller) {
+        // 1. Pega todos os depoimentos
+        const testimonials = Array.from(scroller.children);
 
-    // --- $ NOVO: LÓGICA DO MENU HAMBÚRGUER ---
+        // 2. Duplica os depoimentos para criar o efeito "infinito"
+        testimonials.forEach(item => {
+            const duplicate = item.cloneNode(true);
+            duplicate.setAttribute("aria-hidden", true); // Esconde de leitores de tela
+            scroller.appendChild(duplicate);
+        });
+    }
+    // --- $ FIM DO NOVO BLOCO ---
+
+
+    // --- $ LÓGICA DO MENU HAMBÚRGUER ---
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("nav-menu");
     const navLinks = document.querySelectorAll(".nav-link"); // Pega todos os links
@@ -45,67 +60,67 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    
+
     // --- 2. LÓGICA DE NAVEGAÇÃO (SCROLL-SPY) ---
-    const sections = document.querySelectorAll("section[id]");
-    navLinks = document.querySelectorAll(".nav-menu .nav-link");
-    const header = document.getElementById("main-header");
-    const headerHeight = header.offsetHeight;
-    // Ajuste para o banner, se ele estiver visível
-    const bannerHeight = banner.classList.contains("hidden") ? 0 : banner.offsetHeight;
+    // $ VERIFICA SE ESTAMOS NA PÁGINA PRINCIPAL (procurando a seção #home)
+    if (document.getElementById("home")) {
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-menu .nav-link");
+        const header = document.getElementById("main-header");
+        const banner = document.getElementById("event-banner"); // Precisa do banner aqui
 
-    // Função para destacar o link ativo
-    function changeNavOnScroll() {
-        let fromTop = window.scrollY;
-        
-        // Offset total (header + banner)
-        let totalOffset = headerHeight + bannerHeight + 50; 
+        function changeNavOnScroll() {
+            let fromTop = window.scrollY;
+            let bannerHeight = (banner && !banner.classList.contains("hidden")) ? banner.offsetHeight : 0;
+            let totalOffset = header.offsetHeight + bannerHeight + 50;
 
-        sections.forEach(section => {
-            if (
-                section.offsetTop - totalOffset <= fromTop &&
-                section.offsetTop + section.offsetHeight - totalOffset > fromTop
-            ) {
-                // Remove a classe 'active' de todos
-                navLinks.forEach(link => link.classList.remove("active"));
-
-                // Adiciona 'active' ao link correspondente
-                const id = section.getAttribute("id");
-                const activeLink = document.querySelector(`.nav-menu a[href="#${id}"]`);
-                if (activeLink) {
-                    activeLink.classList.add("active");
+            sections.forEach(section => {
+                if (
+                    section.offsetTop - totalOffset <= fromTop &&
+                    section.offsetTop + section.offsetHeight - totalOffset > fromTop
+                ) {
+                    navLinks.forEach(link => link.classList.remove("active"));
+                    const id = section.getAttribute("id");
+                    const activeLink = document.querySelector(`.nav-menu a[href="#${id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add("active");
+                    }
                 }
-            }
-        });
-    }
-
-    window.addEventListener("scroll", changeNavOnScroll);
+            });
+        }
+        window.addEventListener("scroll", changeNavOnScroll);
+    } // $ FIM DA VERIFICAÇÃO da página principal
 
     // --- 3. LÓGICA DE SCROLL SUAVE ---
-    navLinks.forEach(link => {
-        link.addEventListener("click", function(e) {
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", function (e) {
             const href = this.getAttribute("href");
-            
-            // Verifica se é um link interno (começa com #)
+
+            // $ VERIFICA SE É UM LINK INTERNO (começa com #)
             if (href.startsWith("#")) {
-                e.preventDefault(); // Impede o salto padrão
-                
+                e.preventDefault();
+
                 const targetId = href.substring(1);
                 const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    let bannerCurrentHeight = banner.classList.contains("hidden") ? 0 : banner.offsetHeight;
-                    
+
+                if (targetElement) { // Se o elemento existir nesta página
+                    const header = document.getElementById("main-header");
+                    const banner = document.getElementById("event-banner");
+                    let bannerCurrentHeight = (banner && !banner.classList.contains("hidden")) ? banner.offsetHeight : 0;
+
                     const elementPosition = targetElement.offsetTop;
-                    const offsetPosition = elementPosition - headerHeight - bannerCurrentHeight;
+                    const offsetPosition = elementPosition - header.offsetHeight - bannerCurrentHeight;
 
                     window.scrollTo({
                         top: offsetPosition,
                         behavior: "smooth"
                     });
                 }
+                // $ SE FOR UM LINK PARA O INDEX (ex: "index.html#home")
+            } else if (href.includes("index.html#")) {
+                // Apenas segue o link, o navegador cuidará da âncora
+                return true;
             }
         });
     });
-
 });

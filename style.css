@@ -367,28 +367,68 @@ a:hover { color: var(--color-primary); }
     font-size: 1.1rem;
 }
 
-/* ======== 5. SEÇÃO DEPOIMENTOS ======== */
-/* $ Grade flexível para adicionar mais depoimentos */
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+/* ======== 5. SEÇÃO DEPOIMENTOS (SCROLLER) ======== */
+.testimonial-scroller {
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
-.testimonial-card {
-    background-color: var(--color-background-alt);
+
+.testimonial-scroller-inner {
+    display: flex;
+    gap: 2rem;
+    padding-block: 1rem;
+    width: max-content; /* Faz o container ter a largura de todos os filhos */
+    animation: scroll 40s linear infinite;
+}
+
+/* Pausa a animação ao passar o mouse */
+.testimonial-scroller:hover .testimonial-scroller-inner {
+    animation-play-state: paused;
+}
+
+.testimonial-card-scrolling {
+    width: 350px; /* Largura fixa para cada card */
+    background-color: var(--color-base);
     border-left: 5px solid var(--color-accent);
     padding: 2rem;
     border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    flex-shrink: 0; /* Impede que os cards encolham */
 }
-.testimonial-card .quote {
-    font-size: 1.1rem;
+
+.testimonial-card-scrolling .quote {
+    font-size: 1rem;
     font-style: italic;
     color: var(--color-text-dark);
     margin-bottom: 1.5rem;
+
+    /* Truncar texto após X linhas */
+    display: -webkit-box;         
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;        /* versão com prefixo (para Safari e Chrome antigos) */
+    line-clamp: 5;                
+    overflow: hidden;             /* esconde o texto excedente */
+
+    min-height: 100px; /* Garante altura mínima */
 }
-.testimonial-card .author {
+
+
+.testimonial-card-scrolling .author {
     font-weight: 700;
     color: var(--color-primary);
+}
+
+/* Animação de rolagem */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Move para a esquerda metade da largura total (que será duplicada via JS) */
+        transform: translateX(-50%);
+    }
 }
 
 /* ======== 6. SEÇÃO PUBLICAÇÕES ======== */
@@ -611,6 +651,52 @@ a:hover { color: var(--color-primary); }
     background-color: var(--color-primary);
     transition: all 0.3s ease-in-out;
 }
+
+/* ======== ESTILOS PARA PÁGINAS DE EVENTOS ======== */
+
+.event-page-container {
+    padding: 4rem 0;
+}
+
+.event-page-header {
+    text-align: center;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 2rem;
+    margin-bottom: 3rem;
+}
+
+.media-gallery {
+    text-align: center;
+    padding: 3rem;
+    background-color: var(--color-background-alt);
+    border-radius: var(--border-radius);
+    margin-bottom: 3rem;
+}
+
+/* $ Reutilizando os estilos dos depoimentos antigos para os feedbacks do evento */
+.event-feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.event-feedback-card {
+    background-color: var(--color-background-alt);
+    border-left: 5px solid var(--color-accent);
+    padding: 2rem;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+.event-feedback-card .quote {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-text-dark);
+    margin-bottom: 1.5rem;
+}
+.event-feedback-card .author {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
 
 /* Usamos 992px como breakpoint para tablets e celulares */
 @media (max-width: 992px) {
