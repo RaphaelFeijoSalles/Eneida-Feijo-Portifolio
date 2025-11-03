@@ -9,6 +9,12 @@
     --color-text-light: #555555;
     --color-background-alt: #f8f9fa;
 
+    /* $ MELHORIA: Cores de texto do Footer */
+    --color-footer-text: #E0E0E0;   /* Texto principal mais claro */
+    --color-footer-link: #FFFFFF;   /* Links em branco puro */
+    --color-footer-subtle: #C5C5C5; /* Texto de créditos mais claro */
+
+
     /* Tipografia */
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Montserrat', sans-serif;
@@ -57,7 +63,7 @@ h1 { font-size: 3rem; margin-bottom: 1rem; }
 h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
 h3 { font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--color-secondary); }
 p { margin-bottom: 1rem; }
-a { color: var(--color-secondary); text-decoration: none; transition: color 0.3s ease; }
+a { color: var(--color-secondary); text-decoration: none; transition: all 0.3s ease; }
 a:hover { color: var(--color-primary); }
 
 .section-common {
@@ -91,11 +97,14 @@ a:hover { color: var(--color-primary); }
     font-weight: 500;
     text-align: center;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .btn-primary:hover {
     background-color: var(--color-secondary);
     border-color: var(--color-secondary);
     color: var(--color-base);
+    transform: translateY(-2px); /* Efeito adicionado */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 .btn-secondary {
     display: inline-block;
@@ -110,6 +119,8 @@ a:hover { color: var(--color-primary); }
 .btn-secondary:hover {
     background-color: var(--color-secondary);
     color: var(--color-base);
+    transform: translateY(-2px); /* Efeito adicionado */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 .section-cta {
     text-align: center;
@@ -157,6 +168,7 @@ a:hover { color: var(--color-primary); }
     height: 20px;
 }
 .close-btn svg { width: 14px; height: 14px; }
+
 
 /* ======== 1. HEADER E NAVEGAÇÃO ======== */
 .main-header {
@@ -221,13 +233,31 @@ a:hover { color: var(--color-primary); }
     border-radius: 50px;
     font-weight: 500;
     margin-left: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .nav-link.cta-button:hover {
     background-color: var(--color-secondary);
     color: var(--color-base);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 .nav-link.cta-button::after {
     display: none;
+}
+.hamburger {
+    display: none; 
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+.hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--color-primary);
+    transition: all 0.3s ease-in-out;
 }
 
 /* ======== 2. SEÇÃO HOME ======== */
@@ -305,7 +335,6 @@ a:hover { color: var(--color-primary); }
     font-weight: 500;
     color: var(--color-secondary);
 }
-/* $ Estilo para o vídeo quando for adicionado */
 .home-video-placeholder iframe {
     width: 100%;
     height: 100%;
@@ -314,15 +343,14 @@ a:hover { color: var(--color-primary); }
 }
 
 /* ======== 3. SEÇÃO EVENTOS CONCLUÍDOS ======== */
-/* $ Layout flexível para adicionar mais eventos */
 .event-grid {
     display: grid;
-    grid-template-columns: 1fr; /* 1 coluna por padrão */
+    grid-template-columns: 1fr; 
     gap: 2rem;
 }
 .event-card {
     display: grid;
-    grid-template-columns: 300px 1fr; /* Imagem fixa, texto flexível */
+    grid-template-columns: 300px 1fr; 
     gap: 2rem;
     background-color: var(--color-base);
     box-shadow: var(--box-shadow);
@@ -379,23 +407,23 @@ a:hover { color: var(--color-primary); }
     display: flex;
     gap: 2rem;
     padding-block: 1rem;
-    width: max-content; /* Faz o container ter a largura de todos os filhos */
+    width: max-content; 
     animation: scroll 40s linear infinite;
 }
 
-/* Pausa a animação ao passar o mouse */
 .testimonial-scroller:hover .testimonial-scroller-inner {
     animation-play-state: paused;
 }
 
 .testimonial-card-scrolling {
-    width: 350px; /* Largura fixa para cada card */
+    width: 350px; 
     background-color: var(--color-base);
     border-left: 5px solid var(--color-accent);
     padding: 2rem;
     border-radius: 0 var(--border-radius) var(--border-radius) 0;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    flex-shrink: 0; /* Impede que os cards encolham */
+    flex-shrink: 0; 
+    min-height: 275px; 
 }
 
 .testimonial-card-scrolling .quote {
@@ -403,36 +431,23 @@ a:hover { color: var(--color-primary); }
     font-style: italic;
     color: var(--color-text-dark);
     margin-bottom: 1.5rem;
-
-    /* Truncar texto após X linhas */
-    display: -webkit-box;         
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;        /* versão com prefixo (para Safari e Chrome antigos) */
-    line-clamp: 5;                
-    overflow: hidden;             /* esconde o texto excedente */
-
-    min-height: 100px; /* Garante altura mínima */
 }
-
 
 .testimonial-card-scrolling .author {
     font-weight: 700;
     color: var(--color-primary);
 }
 
-/* Animação de rolagem */
 @keyframes scroll {
     0% {
         transform: translateX(0);
     }
     100% {
-        /* Move para a esquerda metade da largura total (que será duplicada via JS) */
         transform: translateX(-50%);
     }
 }
 
 /* ======== 6. SEÇÃO PUBLICAÇÕES ======== */
-/* $ Grade flexível para adicionar mais publicações */
 .publication-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -469,202 +484,16 @@ a:hover { color: var(--color-primary); }
     margin: 0 1.5rem 1.5rem 1.5rem;
 }
 
-/* ======== 7. FOOTER E CONTATO ======== */
-.main-footer {
-    background-color: var(--color-primary);
-    color: var(--color-base);
-    padding: 4rem 0 1rem 0;
-    margin-top: 3rem;
-}
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1.5fr 1.5fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-}
-.main-footer h3 {
-    color: var(--color-accent);
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-}
-.main-footer p {
-    color: #eee;
-    margin-bottom: 0.5rem;
-}
-.main-footer a {
-    color: #eee;
-}
-.main-footer a:hover {
-    color: var(--color-accent);
-}
-.footer-contact p {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.footer-contact svg {
-    width: 16px;
-    height: 16px;
-    fill: var(--color-accent);
-}
-.footer-dev-credits p {
-    font-size: 0.9rem;
-    color: #ccc;
-}
-.footer-copyright {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-secondary);
-}
-.footer-copyright p {
-    font-size: 0.9rem;
-    color: #ccc;
-}
-
-/* ======== 7. FOOTER E CONTATO (AJUSTES) ======== */
-.main-footer {
-    background-color: var(--color-primary);
-    color: var(--color-base);
-    padding: 4rem 0 0 0; /* Ajustado para remover padding inferior, que vai para o copyright */
-    margin-top: 3rem;
-    margin-bottom: auto;
-}
-
-/* $ NOVO BLOCO DE AGENDAMENTO */
-.agendamento-cta {
-    text-align: center;
-    padding-bottom: 4rem;
-    margin-bottom: 3rem;
-    border-bottom: 1px solid var(--color-secondary);
-}
-.agendamento-cta .section-title {
-    color: var(--color-base); /* Título branco */
-}
-.agendamento-cta .section-subtitle {
-    color: #eee;
-    margin-bottom: 2.5rem;
-}
-.agendamento-botoes {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap; /* Para quebrar em telas menores */
-}
-.agendamento-botoes a {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    padding: 14px 30px;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-}
-.agendamento-botoes a svg {
-    width: 20px;
-    height: 20px;
-}
-/* Botão WhatsApp (verde) */
-.agendamento-botoes .btn-whatsapp {
-    background-color: #25D366;
-    border: 2px solid #25D366;
-    color: var(--color-base);
-}
-.agendamento-botoes .btn-whatsapp:hover {
-    background-color: #1EAE54;
-    border-color: #1EAE54;
-}
-/* Botão Email (visual 'vazado' no footer) */
-.agendamento-botoes .btn-email {
-    background-color: transparent;
-    border: 2px solid var(--color-base);
-    color: var(--color-base);
-}
-.agendamento-botoes .btn-email:hover {
-    background-color: var(--color-base);
-    color: var(--color-primary);
-}
-/* $ FIM DO NOVO BLOCO */
-
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1.5fr 1.5fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-}
-.main-footer h3 {
-    color: var(--color-accent);
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-}
-
-/* ======== 7. HOTFIXES DO FOOTER ======== */
-
-/* $ FIX 1: Adiciona o alinhamento de flexbox (ícone + texto) que estava faltando */
-.footer-contact p {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #eee;
-    margin-bottom: 0.5rem; /* Garante espaçamento consistente */
-}
-
-.footer-contact svg {
-    width: 16px;
-    height: 16px;
-    fill: var(--color-accent);
-}
-/* $ FIM DO FIX 1 */
-
-
-/* $ FIX 2: Remove a "linha branca" (margem extra) no fim da página */
-.footer-copyright {
-    text-align: center;
-    padding-top: 2rem;
-    padding-bottom: 2rem; /* Adiciona um padding controlado */
-    border-top: 1px solid var(--color-secondary);
-}
-
-.footer-copyright p {
-    font-size: 0.9rem;
-    color: #ccc;
-    margin-bottom: 0; /* Remove a margem que causava o espaço extra */
-}
-/* $ FIM DO FIX 2 */
-
-/* ======== 8. RESPONSIVIDADE (Menu Hambúrguer) ======== */
-
-/* Estilos do Botão Hambúrguer */
-.hamburger {
-    display: none; /* Escondido no desktop */
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 0;
-}
-.hamburger .bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    background-color: var(--color-primary);
-    transition: all 0.3s ease-in-out;
-}
-
-/* ======== ESTILOS PARA PÁGINAS DE EVENTOS ======== */
-
+/* ======== 7. ESTILOS PARA PÁGINAS DE EVENTOS ======== */
 .event-page-container {
     padding: 4rem 0;
 }
-
 .event-page-header {
     text-align: center;
     border-bottom: 2px solid var(--color-accent);
     padding-bottom: 2rem;
     margin-bottom: 3rem;
 }
-
 .media-gallery {
     text-align: center;
     padding: 3rem;
@@ -672,8 +501,6 @@ a:hover { color: var(--color-primary); }
     border-radius: var(--border-radius);
     margin-bottom: 3rem;
 }
-
-/* $ Reutilizando os estilos dos depoimentos antigos para os feedbacks do evento */
 .event-feedback-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -698,50 +525,178 @@ a:hover { color: var(--color-primary); }
 }
 
 
-/* Usamos 992px como breakpoint para tablets e celulares */
+/* ======== 8. FOOTER E CONTATO ======== */
+.main-footer {
+    background-color: var(--color-primary);
+    color: var(--color-footer-text); /* $ COR CLAREADA */
+    padding-top: 4rem; /* Unificado o padding superior */
+    margin-top: 3rem;
+}
+.main-footer h3 {
+    color: var(--color-accent);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+.main-footer p {
+    color: var(--color-footer-text); /* $ COR CLAREADA */
+}
+.main-footer a {
+    color: var(--color-footer-link); /* $ LINKS MAIS CLAROS */
+    font-weight: 500;
+}
+.main-footer a:hover {
+    color: var(--color-accent);
+}
+
+/* Bloco de Agendamento (só existe no index.html) */
+.agendamento-cta {
+    text-align: center;
+    padding-bottom: 4rem;
+    margin-bottom: 3rem; /* $ ESTA É A "FAIXA AZUL EXTRA" DA HOME */
+    border-bottom: 1px solid var(--color-secondary);
+}
+.agendamento-cta .section-title {
+    color: var(--color-base); 
+}
+.agendamento-cta .section-subtitle {
+    color: var(--color-footer-text);
+    margin-bottom: 2.5rem;
+}
+.agendamento-botoes {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap; 
+}
+.agendamento-botoes a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1rem;
+    font-weight: 700; /* Destaque maior */
+    padding: 14px 30px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.agendamento-botoes a svg {
+    width: 20px;
+    height: 20px;
+}
+.agendamento-botoes .btn-whatsapp {
+    background-color: #25D366;
+    border: 2px solid #25D366;
+    color: var(--color-base);
+}
+.agendamento-botoes .btn-whatsapp:hover {
+    background-color: #1EAE54;
+    border-color: #1EAE54;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.agendamento-botoes .btn-email {
+    background-color: transparent;
+    border: 2px solid var(--color-base);
+    color: var(--color-base);
+}
+.agendamento-botoes .btn-email:hover {
+    background-color: var(--color-base);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Grid de Contatos (existe em todas as páginas) */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr;
+    gap: 3rem;
+    margin-bottom: 0; /* $ SEM MARGEM INFERIOR POR PADRÃO */
+}
+
+
+
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.75rem; 
+}
+.footer-contact svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--color-accent);
+}
+.footer-dev-credits p {
+    font-size: 0.9rem;
+    color: var(--color-footer-subtle); /* $ COR CLAREADA */
+    margin-bottom: 0.5rem;
+}
+.footer-dev-credits a {
+    color: var(--color-footer-text); /* $ COR CLAREADA */
+}
+.footer-dev-credits a:hover {
+    color: var(--color-accent);
+}
+
+/* Copyright (existe em todas as páginas) */
+.footer-copyright {
+    text-align: center;
+    /* $ SOLUÇÃO: Adiciona o padding aqui para "centralizar" em TODAS as páginas */
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem; 
+    border-top: 1px solid var(--color-secondary);
+}
+.footer-copyright p {
+    font-size: 0.9rem;
+    color: var(--color-footer-subtle); /* $ COR CLAREADA */
+    margin-bottom: 0; 
+}
+
+
+/* ======== 9. RESPONSIVIDADE (MEDIA QUERIES) ======== */
+
 @media (max-width: 992px) {
     .navbar {
-        /* O container do navbar agora tem padding */
         padding: 0 20px;
-        max-width: 100%; /* Ocupa a largura toda */
+        max-width: 100%;
     }
 
     .hamburger {
-        display: block; /* Mostra o botão hambúrguer */
-        z-index: 1002; /* Para ficar acima do menu */
+        display: block; 
+        z-index: 1002;
     }
 
     .nav-menu {
-        position: fixed; /* Menu fica por cima de tudo */
-        left: -100%;     /* Começa fora da tela, à esquerda */
-        top: var(--header-height); /* Começa abaixo do header */
-        flex-direction: column; /* Itens ficam em coluna */
+        position: fixed; 
+        left: -100%;     
+        top: var(--header-height); 
+        flex-direction: column; 
         background-color: var(--color-base);
         width: 100%;
-        height: calc(100vh - var(--header-height)); /* Ocupa a tela toda */
+        height: calc(100vh - var(--header-height)); 
         text-align: center;
         transition: left 0.3s ease-in-out;
         box-shadow: 0 8px 10px rgba(0,0,0,0.1);
         padding-top: 2rem;
-        gap: 0; /* Remove o gap do desktop */
+        gap: 0; 
         z-index: 1001;
     }
 
-    /* $ Classe 'active' que será adicionada pelo JS */
     .nav-menu.active {
-        left: 0; /* Puxa o menu para dentro da tela */
+        left: 0; 
     }
 
     .nav-item {
-        margin: 1.5rem 0; /* Espaçamento vertical dos links */
+        margin: 1.5rem 0; 
     }
     
     .nav-link {
-        font-size: 1.2rem; /* Letra maior para mobile */
+        font-size: 1.2rem; 
     }
 
     .nav-link.cta-button {
-        margin-left: auto; /* Centraliza o botão */
+        margin-left: auto; 
         margin-right: auto;
         margin-top: 1rem;
         width: 80%;
@@ -750,9 +705,8 @@ a:hover { color: var(--color-primary); }
         padding: 12px 20px;
     }
 
-    /* $ Animação do "X" do hambúrguer */
     .hamburger.active .bar:nth-child(2) {
-        opacity: 0; /* Barra do meio some */
+        opacity: 0; 
     }
     .hamburger.active .bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
@@ -761,7 +715,7 @@ a:hover { color: var(--color-primary); }
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* Outros ajustes de responsividade que já existiam */
+    /* Outros ajustes */
     h1 { font-size: 2.5rem; }
     h2, .section-title { font-size: 2rem; }
 
@@ -781,13 +735,10 @@ a:hover { color: var(--color-primary); }
     }
     .event-card-image img { height: 250px; }
 
-    /* $ FIX: Corrige a sobreposição do 'X' no banner em telas móveis */
     .event-banner {
-        /* Adiciona um preenchimento à direita para o texto não ficar embaixo do botão */
         padding-right: 50px; 
     }
     .close-btn {
-        /* Ajusta a posição do botão para ele ficar dentro do novo preenchimento */
         right: 15px; 
     }
     
@@ -796,7 +747,7 @@ a:hover { color: var(--color-primary); }
     }
 
     .agendamento-botoes {
-        flex-direction: column; /* Botões do footer em coluna */
+        flex-direction: column;
         gap: 1rem;
     }
 }
