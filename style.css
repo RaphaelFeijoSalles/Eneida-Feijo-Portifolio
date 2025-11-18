@@ -1071,4 +1071,30 @@ a:hover { color: var(--color-primary); }
     .btn-whatsapp-event svg {
         min-width: 18px; 
     }
+
+    /* $ NOVO 1: Botões Centralizados */
+    .agendamento-botoes a {
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* $ NOVO 2: Depoimentos Deslizantes (Swipe) */
+    .testimonial-scroller-inner {
+        width: 100%; 
+        animation: none; 
+        overflow-x: auto; 
+        scroll-snap-type: x mandatory; 
+        padding-bottom: 20px; 
+        scrollbar-width: none; 
+        -ms-overflow-style: none;  
+    }
+    .testimonial-scroller-inner::-webkit-scrollbar {
+        display: none; 
+    }
+    .testimonial-card-scrolling {
+        min-width: 85vw; 
+        width: 85vw;
+        scroll-snap-align: center; 
+        margin-right: 15px; 
+    }
 }
