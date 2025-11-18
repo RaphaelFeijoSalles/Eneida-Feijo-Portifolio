@@ -9,11 +9,10 @@
     --color-text-light: #555555;
     --color-background-alt: #f8f9fa;
 
-    /* $ MELHORIA: Cores de texto do Footer */
+    /* Cores de texto do Footer */
     --color-footer-text: #E0E0E0;   /* Texto principal mais claro */
     --color-footer-link: #FFFFFF;   /* Links em branco puro */
     --color-footer-subtle: #C5C5C5; /* Texto de créditos mais claro */
-
 
     /* Tipografia */
     --font-heading: 'Playfair Display', serif;
@@ -103,7 +102,7 @@ a:hover { color: var(--color-primary); }
     background-color: var(--color-secondary);
     border-color: var(--color-secondary);
     color: var(--color-base);
-    transform: translateY(-2px); /* Efeito adicionado */
+    transform: translateY(-2px); 
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 .btn-secondary {
@@ -119,7 +118,7 @@ a:hover { color: var(--color-primary); }
 .btn-secondary:hover {
     background-color: var(--color-secondary);
     color: var(--color-base);
-    transform: translateY(-2px); /* Efeito adicionado */
+    transform: translateY(-2px); 
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 .section-cta {
@@ -260,7 +259,7 @@ a:hover { color: var(--color-primary); }
     transition: all 0.3s ease-in-out;
 }
 
-/* ======== 2. SEÇÃO HOME ======== */
+/* ======== 2. SEÇÃO HOME (index.html) ======== */
 .section-home {
     padding: 4rem 0 2rem 0;
     background-color: var(--color-base);
@@ -342,7 +341,7 @@ a:hover { color: var(--color-primary); }
     border-radius: var(--border-radius);
 }
 
-/* ======== 3. SEÇÃO EVENTOS CONCLUÍDOS ======== */
+/* ======== 3. SEÇÃO EVENTOS CONCLUÍDOS (index.html) ======== */
 .event-grid {
     display: grid;
     grid-template-columns: 1fr; 
@@ -370,7 +369,7 @@ a:hover { color: var(--color-primary); }
     padding: 2rem;
 }
 
-/* ======== 4. SEÇÃO PRÓXIMOS EVENTOS ======== */
+/* ======== 4. SEÇÃO PRÓXIMOS EVENTOS (index.html) ======== */
 .save-the-date-card {
     max-width: 700px;
     margin: 2rem auto 0 auto;
@@ -395,14 +394,13 @@ a:hover { color: var(--color-primary); }
     font-size: 1.1rem;
 }
 
-/* ======== 5. SEÇÃO DEPOIMENTOS (SCROLLER) ======== */
+/* ======== 5. SEÇÃO DEPOIMENTOS (index.html) ======== */
 .testimonial-scroller {
     width: 100%;
     overflow: hidden;
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
-
 .testimonial-scroller-inner {
     display: flex;
     gap: 2rem;
@@ -410,11 +408,9 @@ a:hover { color: var(--color-primary); }
     width: max-content; 
     animation: scroll 40s linear infinite;
 }
-
 .testimonial-scroller:hover .testimonial-scroller-inner {
     animation-play-state: paused;
 }
-
 .testimonial-card-scrolling {
     width: 350px; 
     background-color: var(--color-base);
@@ -425,19 +421,16 @@ a:hover { color: var(--color-primary); }
     flex-shrink: 0; 
     min-height: 275px; 
 }
-
 .testimonial-card-scrolling .quote {
     font-size: 1rem;
     font-style: italic;
     color: var(--color-text-dark);
     margin-bottom: 1.5rem;
 }
-
 .testimonial-card-scrolling .author {
     font-weight: 700;
     color: var(--color-primary);
 }
-
 @keyframes scroll {
     0% {
         transform: translateX(0);
@@ -447,7 +440,7 @@ a:hover { color: var(--color-primary); }
     }
 }
 
-/* ======== 6. SEÇÃO PUBLICAÇÕES ======== */
+/* ======== 6. SEÇÃO PUBLICAÇÕES (index.html) ======== */
 .publication-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -484,7 +477,7 @@ a:hover { color: var(--color-primary); }
     margin: 0 1.5rem 1.5rem 1.5rem;
 }
 
-/* ======== 7. ESTILOS PARA PÁGINAS DE EVENTOS ======== */
+/* ======== 7. ESTILOS PÁGINAS DE EVENTOS (evento-01.html, proximo-evento.html) ======== */
 .event-page-container {
     padding: 4rem 0;
 }
@@ -524,12 +517,268 @@ a:hover { color: var(--color-primary); }
     color: var(--color-primary);
 }
 
+/* --- Hero (Cabeçalho da página de evento) --- */
+.event-hero {
+    padding: 4rem 0;
+    background-color: var(--color-primary); 
+    background-image: linear-gradient(rgba(11, 44, 74, 0.8), rgba(11, 44, 74, 0.8)), url('images/Ambientacao.jpg'); 
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: var(--color-base);
+}
+.event-hero h1 {
+    color: var(--color-base);
+    font-size: 3rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+.event-hero .event-subtitle {
+    font-size: 1.5rem;
+    color: var(--color-accent); 
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+.event-hero .event-date {
+    font-size: 1.2rem;
+    color: var(--color-base);
+    font-weight: 500;
+    margin-bottom: 0;
+}
 
-/* ======== 8. FOOTER E CONTATO ======== */
+/* --- Seção de Detalhes (Programação, Profissionais, Info) --- */
+.event-details-section {
+    padding: 4rem 0;
+}
+/* $ CORREÇÃO DO GRID: 
+   Define 3 colunas por padrão (desktop) e será alterado no @media query. 
+   Removidas as grid-template-areas conflitantes. */
+.event-layout-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+/* As seções abaixo (cronograma, etc.) não precisam mais de grid-area */
+
+.section-title-alt {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-accent);
+}
+
+/* Cronograma e Informações */
+.event-cronograma ul,
+.event-info ul {
+    list-style: none;
+    padding-left: 0;
+}
+.event-cronograma li,
+.event-info li {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+}
+.event-cronograma li strong {
+    color: var(--color-text-dark);
+    font-size: 1.1rem;
+}
+.event-cronograma li em {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+}
+.event-info li {
+    border-bottom: none;
+    padding: 0.5rem 0;
+    line-height: 1.5;
+}
+
+/* Destaque para o Endereço na lista de Informações */
+.event-info li.destaque-endereco {
+    background-color: var(--color-background-alt); /* Fundo bege suave */
+    border: 2px solid var(--color-primary);         /* Borda Azul Profundo */
+    border-radius: var(--border-radius);
+    color: var(--color-primary);                    /* Texto Azul */
+    font-weight: 700;                               /* Negrito */
+    padding: 1rem;                                  /* Mais espaço interno */
+    margin-bottom: 1rem;                            /* Separação dos itens abaixo */
+    display: block;                                 /* Garante que ocupe o espaço */
+    text-align: center;                             /* Centraliza o texto */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);         /* Sombra suave */
+    transform: scale(1.02);                         /* Levemente maior que o resto */
+}
+
+/* Ajuste para o ícone SVG dentro do endereço */
+.event-info li.destaque-endereco svg {
+    fill: var(--color-primary);
+    width: 18px;
+    height: 18px;
+    margin-bottom: -3px; /* Alinhamento fino com o texto */
+}
+
+/* Profissionais (Com Imagens) */
+.prof-card {
+    background-color: var(--color-background-alt);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem; 
+    border-left: 4px solid var(--color-secondary);
+    display: flex; 
+    align-items: center; 
+    gap: 1rem; 
+}
+.prof-card:last-child {
+    margin-bottom: 0;
+}
+.prof-img {
+    flex-shrink: 0; 
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    overflow: hidden; 
+    border: 2px solid var(--color-primary); 
+}
+.prof-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+.prof-details h4 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+.prof-details p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* --- Passos para Inscrição --- */
+.passos-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+}
+.passo {
+    background: var(--color-base);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+.passo span {
+    display: inline-flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: var(--color-base);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.passo h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+.passo p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* --- Formulário e PIX --- */
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+.pix-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--color-base);
+    padding: 3rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+.pix-qr img {
+    width: 100%;
+    max-width: 250px; 
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.pix-info h3 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+.chave-pix {
+    background: var(--color-background-alt);
+    border: 1px dashed var(--color-secondary);
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+    text-align: center;
+}
+.chave-pix strong {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+}
+.chave-pix span {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    letter-spacing: 1px;
+}
+.aviso {
+    font-size: 1rem;
+    color: var(--color-text-dark);
+}
+.btn-whatsapp-event {
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center; 
+    gap: 10px;
+    background-color: #25D366;
+    border-color: #25D366;
+    color: var(--color-base);
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    width: auto; 
+    max-width: 100%; 
+    white-space: nowrap; 
+}
+.btn-whatsapp-event svg {
+    min-width: 20px; 
+}
+.btn-whatsapp-event:hover {
+    background-color: #1EAE54;
+    border-color: #1EAE54;
+}
+
+/* ======== 8. FOOTER (Global) ======== */
 .main-footer {
     background-color: var(--color-primary);
-    color: var(--color-footer-text); /* $ COR CLAREADA */
-    padding-top: 4rem; /* Unificado o padding superior */
+    color: var(--color-footer-text); 
+    padding-top: 4rem; 
     margin-top: 3rem;
 }
 .main-footer h3 {
@@ -538,21 +787,21 @@ a:hover { color: var(--color-primary); }
     margin-bottom: 1rem;
 }
 .main-footer p {
-    color: var(--color-footer-text); /* $ COR CLAREADA */
+    color: var(--color-footer-text); 
 }
 .main-footer a {
-    color: var(--color-footer-link); /* $ LINKS MAIS CLAROS */
+    color: var(--color-footer-link); 
     font-weight: 500;
 }
 .main-footer a:hover {
     color: var(--color-accent);
 }
 
-/* Bloco de Agendamento (só existe no index.html) */
+/* --- Bloco de Agendamento (index.html) --- */
 .agendamento-cta {
     text-align: center;
     padding-bottom: 4rem;
-    margin-bottom: 3rem; /* $ ESTA É A "FAIXA AZUL EXTRA" DA HOME */
+    margin-bottom: 3rem; /* $ Esta é a "faixa azul extra" SÓ da Home */
     border-bottom: 1px solid var(--color-secondary);
 }
 .agendamento-cta .section-title {
@@ -573,7 +822,7 @@ a:hover { color: var(--color-primary); }
     align-items: center;
     gap: 12px;
     font-size: 1.1rem;
-    font-weight: 700; /* Destaque maior */
+    font-weight: 700; 
     padding: 14px 30px;
     border-radius: 50px;
     transition: all 0.3s ease;
@@ -606,16 +855,13 @@ a:hover { color: var(--color-primary); }
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* Grid de Contatos (existe em todas as páginas) */
+/* --- Grid de Contatos (Global) --- */
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1.5fr 1.5fr;
+    grid-template-columns: repeat(3, 1fr); /* $ CORRIGIDO para 3 colunas iguais */
     gap: 3rem;
-    margin-bottom: 0; /* $ SEM MARGEM INFERIOR POR PADRÃO */
+    margin-bottom: 0; 
 }
-
-
-
 .footer-contact p {
     display: flex;
     align-items: center;
@@ -629,44 +875,43 @@ a:hover { color: var(--color-primary); }
 }
 .footer-dev-credits p {
     font-size: 0.9rem;
-    color: var(--color-footer-subtle); /* $ COR CLAREADA */
+    color: var(--color-footer-subtle); 
     margin-bottom: 0.5rem;
 }
 .footer-dev-credits a {
-    color: var(--color-footer-text); /* $ COR CLAREADA */
+    color: var(--color-footer-text); 
 }
 .footer-dev-credits a:hover {
     color: var(--color-accent);
 }
 
-/* Copyright (existe em todas as páginas) */
+/* --- Copyright (Global) --- */
 .footer-copyright {
     text-align: center;
-    /* $ SOLUÇÃO: Adiciona o padding aqui para "centralizar" em TODAS as páginas */
-    padding-top: 2.5rem;
+    padding-top: 2.5rem;    /* $ Espaçamento padrão para todas as páginas */
     padding-bottom: 2.5rem; 
     border-top: 1px solid var(--color-secondary);
 }
 .footer-copyright p {
     font-size: 0.9rem;
-    color: var(--color-footer-subtle); /* $ COR CLAREADA */
+    color: var(--color-footer-subtle); 
     margin-bottom: 0; 
 }
+
 
 
 /* ======== 9. RESPONSIVIDADE (MEDIA QUERIES) ======== */
 
 @media (max-width: 992px) {
+    /* --- Menu Mobile --- */
     .navbar {
         padding: 0 20px;
         max-width: 100%;
     }
-
     .hamburger {
         display: block; 
         z-index: 1002;
     }
-
     .nav-menu {
         position: fixed; 
         left: -100%;     
@@ -682,19 +927,15 @@ a:hover { color: var(--color-primary); }
         gap: 0; 
         z-index: 1001;
     }
-
     .nav-menu.active {
         left: 0; 
     }
-
     .nav-item {
         margin: 1.5rem 0; 
     }
-    
     .nav-link {
         font-size: 1.2rem; 
     }
-
     .nav-link.cta-button {
         margin-left: auto; 
         margin-right: auto;
@@ -704,7 +945,6 @@ a:hover { color: var(--color-primary); }
         font-size: 1.2rem;
         padding: 12px 20px;
     }
-
     .hamburger.active .bar:nth-child(2) {
         opacity: 0; 
     }
@@ -715,10 +955,11 @@ a:hover { color: var(--color-primary); }
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* Outros ajustes */
+    /* --- Ajustes Globais Mobile --- */
     h1 { font-size: 2.5rem; }
     h2, .section-title { font-size: 2rem; }
 
+    /* --- Seção Home Mobile --- */
     .home-grid {
         grid-template-columns: 1fr;
         grid-template-areas: 
@@ -735,6 +976,7 @@ a:hover { color: var(--color-primary); }
     }
     .event-card-image img { height: 250px; }
 
+    /* --- Banner Mobile --- */
     .event-banner {
         padding-right: 50px; 
     }
@@ -742,12 +984,91 @@ a:hover { color: var(--color-primary); }
         right: 15px; 
     }
     
+    /* --- Footer Mobile --- */
     .footer-grid {
         grid-template-columns: 1fr;
+        text-align: center; /* Centraliza o texto das colunas */
     }
-
+    .footer-contact p {
+        justify-content: center; /* Centraliza os ícones de contato */
+    }
     .agendamento-botoes {
         flex-direction: column;
         gap: 1rem;
+    }
+
+    /* --- Página de Evento Mobile --- */
+    .event-hero h1 {
+        font-size: 2rem; 
+    }
+    .event-hero .event-subtitle {
+        font-size: 1rem;
+    }
+    /* $ CORREÇÃO: Altera o grid do evento para 1 coluna no mobile */
+    .event-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem; 
+    }
+    .event-cronograma,
+    .event-profissionais,
+    .event-info {
+        text-align: center;
+    }
+    .event-cronograma li,
+    .event-info li {
+        text-align: center; 
+    }
+    .prof-card {
+        flex-direction: column; 
+        text-align: center; 
+        border-left: none; 
+        border-top: 4px solid var(--color-secondary); 
+        gap: 0.5rem;
+    }
+    .prof-img {
+        margin: 0 auto 0.75rem auto; 
+        border: 3px solid var(--color-primary); 
+        width: 100px; 
+        height: 100px; 
+    }
+    .prof-details h4 {
+        margin-top: 0.5rem;
+    }
+    .prof-card:not(:last-child) {
+        margin-bottom: 2rem; 
+    }
+    .passos-container {
+        grid-template-columns: 1fr; 
+        gap: 2rem;
+    }
+    .passo {
+        padding: 1.5rem; 
+    }
+    .pix-container {
+        grid-template-columns: 1fr; 
+        text-align: center;
+        padding: 2rem;
+    }
+    .pix-qr {
+        margin-bottom: 1.5rem;
+    }
+    .pix-qr img {
+        max-width: 200px; 
+        margin: 0 auto; 
+    }
+    .pix-info h3 {
+        font-size: 1.75rem; 
+    }
+    .chave-pix span {
+        font-size: 1.1rem; 
+    }
+    .btn-whatsapp-event {
+        width: 100%; 
+        padding: 1rem 1.5rem; 
+        font-size: 1rem; 
+        white-space: normal; 
+    }
+    .btn-whatsapp-event svg {
+        min-width: 18px; 
     }
 }
