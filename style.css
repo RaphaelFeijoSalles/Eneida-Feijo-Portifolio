@@ -477,7 +477,7 @@ a:hover { color: var(--color-primary); }
     margin: 0 1.5rem 1.5rem 1.5rem;
 }
 
-/* ======== 7. ESTILOS PÁGINAS DE EVENTOS (evento-01.html, proximo-evento.html) ======== */
+/* ======== 7. ESTILOS PÁGINAS DE EVENTOS (/tardedeimersao1/index.html, /tardedeimersao2/index.html) ======== */
 .event-page-container {
     padding: 4rem 0;
 }
@@ -521,7 +521,7 @@ a:hover { color: var(--color-primary); }
 .event-hero {
     padding: 4rem 0;
     background-color: var(--color-primary); 
-    background-image: linear-gradient(rgba(11, 44, 74, 0.8), rgba(11, 44, 74, 0.8)), url('images/Ambientacao.jpg'); 
+    background-image: linear-gradient(rgba(11, 44, 74, 0.8), rgba(11, 44, 74, 0.8)), url('/images/Ambientacao.jpg'); 
     background-size: cover;
     background-position: center;
     text-align: center;
