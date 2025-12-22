@@ -178,7 +178,25 @@ a:hover { color: var(--color-primary); }
 .home-text { grid-area: text; }
 .home-image { grid-area: image; text-align: center; }
 .home-bio { grid-area: bio; }
-.home-video-placeholder { grid-area: video; }
+
+/* Container do Vídeo Responsivo */
+.home-video-wrapper {
+    grid-area: video; /* Mantém ele no lugar certo do Grid */
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Arredonda os cantos do vídeo */
+    box-shadow: var(--box-shadow);
+    
+    /* A MÁGICA DA RESPONSIVIDADE: */
+    aspect-ratio: 16 / 9; /* Força a proporção retangular correta sempre */
+}
+
+.home-video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
 
 .home-text .subtitle { font-size: 1.1rem; line-height: 1.8; }
 .home-image img {
@@ -203,20 +221,7 @@ a:hover { color: var(--color-primary); }
     margin-top: 2rem;
 }
 .home-bio h2 { text-align: center; margin-bottom: 2rem; }
-.home-video-placeholder {
-    width: 100%;
-    height: 400px;
-    background-color: var(--color-background-alt);
-    border: 2px dashed var(--color-secondary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-radius: var(--border-radius);
-    margin-top: 2rem;
-}
-.home-video-placeholder p { font-size: 1.2rem; font-weight: 500; color: var(--color-secondary); }
-.home-video-placeholder iframe { width: 100%; height: 100%; border: none; border-radius: var(--border-radius); }
+
 
 /* ======== 3. BOTÕES GLOBAIS & CTA ======== */
 .btn-primary {
